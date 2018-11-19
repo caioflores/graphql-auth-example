@@ -1,0 +1,9 @@
+"Queries"
+type Query {
+ """
+ Get a user
+ """
+  user(
+    Id: String!
+  ): User
+}
