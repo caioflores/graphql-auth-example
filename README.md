@@ -1,12 +1,3 @@
-<p align="center">
-  <img src="https://cdn-std.dprcdn.net/files/acc_687327/AmwiMZ">
-</p>
-
-<p align="center">
-  <img src="https://badgen.net/npm/v/graphql-auth-example">
-  <img src="https://badgen.net/badge/license/MIT/blue">
-</p>
-
 ## :hammer: &nbsp; Install and Usage
 
 
