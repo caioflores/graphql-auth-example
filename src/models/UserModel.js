@@ -8,7 +8,7 @@ const errors = {
 
 const getError = error => new Error(errors[error]);
 
-module.exports = function UserModel(sequelize, DataTypes) {
+module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     'User',
     {
@@ -77,6 +77,13 @@ module.exports = function UserModel(sequelize, DataTypes) {
     } catch (err) {
       throw err;
     }
+  };
+
+  User.hasPermission = ({ type }) => {
+    if (type === 'private') {
+      return true;
+    }
+    return false;
   };
 
   return User;

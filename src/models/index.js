@@ -8,11 +8,7 @@ const Sequelize = require('sequelize');
 const basename = path.basename(module.filename);
 
 const env = process.env.ENVIRONMENT || 'development';
-let maxPools = 15;
-
-if (env === 'production') {
-  maxPools = 30;
-}
+const maxPools = 15;
 
 const config = require(`../../postgres-config.js`)[env];
 const db = {};

@@ -5,7 +5,7 @@ type User {
   """
   User id
   """
-  id: Boolean!
+  id: String
   """
   User email
   """

@@ -1,5 +1,5 @@
 const jwt = module.require('jsonwebtoken');
-const User = module.require('../../models');
+const { User } = module.require('../../models');
 
 const messages = {
   UNAUTHORIZED: 'Unauthorized',
@@ -26,14 +26,19 @@ const authenticate = async (resolve, token, ctx) => {
     where: { id: jwtDecoded.userId },
   };
 
-  await User.findOne(params).then(user => {
+  try {
+    const user = await User.findOne(params);
+
     if (!user) {
       throw new Error('User not found.');
     } else {
       context.auth = { type: authTypes.PRIVATE, user };
-      resolve();
     }
-  });
+  } catch (err) {
+    throw err;
+  }
+
+  return resolve();
 };
 
 const auth = async (resolve, parent, args, ctx, info) => {
@@ -48,4 +53,4 @@ const auth = async (resolve, parent, args, ctx, info) => {
   return authenticate(resolve, token, context);
 };
 
-module.exports = { Query: auth };
+module.exports = [{ Query: auth }];

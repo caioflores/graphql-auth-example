@@ -5,7 +5,12 @@ module.exports = {
     signUp: async (obj, args, context, info) => User.signUp(args),
   },
   Query: {
-    user: async (obj, args, context, info) => User.findOne(args),
+    user: async (obj, { id }, { auth }, info) => {
+      if (User.hasPermission(auth)) {
+        return User.findById(id);
+      }
+      return null;
+    },
     login: async (obj, args, context, info) => User.login(args),
   },
 };
