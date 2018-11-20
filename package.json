@@ -1,11 +1,22 @@
 {
-  "name": "graphql-sequelize-row-security",
+  "name": "graphql-auth-example",
   "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
-  "repository": "",
-  "author": "",
-  "license": "UNLICENSED",
+  "description": "An example implementation of a server using GraphQL, graphql-yoga and Sequelize (with PotgreSQL).",
+  "main": "src/index.js",
+  "author": {
+    "name": "Caio Flores",
+    "email": "caiopflores@gmail.com",
+    "url": "https://github.com/caioflores"
+  },
+  "homepage": "https://github.com/caioflores/graphql-auth-example",
+  "bugs": {
+    "url": "https://github.com/caioflores/graphql-auth-example/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caioflores/graphql-auth-example.git"
+  },
+  "license": "MIT",
   "private": true,
   "scripts": {
     "start": "nodemon -e js,graphql",
