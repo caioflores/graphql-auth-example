@@ -5,13 +5,13 @@ type User {
   """
   User id
   """
-  Id: Boolean!
+  id: Boolean!
   """
   User email
   """
-  Email: String
+  email: String
   """
   User password
   """
-  Password: String
+  password: String
 }

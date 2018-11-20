@@ -1,12 +1,12 @@
 require('dotenv').config();
 const { GraphQLServer } = require('graphql-yoga');
-// const middlewares = require('./src/graphql/middleware');
+const middlewares = require('./graphql/middleware/auth');
 
-const schemaBuilder = module.require('./src/graphql/schemaBuilder');
+const schemaBuilder = module.require('./graphql/schemaBuilder');
 
 const schema = schemaBuilder.buildAll();
 schema.context = req => ({ ...req });
-// schema.middlewares = middlewares;
+schema.middlewares = middlewares;
 const server = new GraphQLServer(schema);
 const options = {
   port: process.env.GL_SERVER_PORT || 3000,

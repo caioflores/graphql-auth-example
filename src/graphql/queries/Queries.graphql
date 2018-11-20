@@ -1,9 +1,11 @@
 "Queries"
 type Query {
- """
- Get a user
- """
-  user(
-    Id: String!
-  ): User
+  """
+  Get a user
+  """
+  user(id: String!): User
+  """
+  Get user credentials
+  """
+  login(email: String!, password: String!): AuthToken
 }

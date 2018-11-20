@@ -10,7 +10,9 @@ const basename = path.basename(module.filename);
 const env = process.env.ENVIRONMENT || 'development';
 let maxPools = 15;
 
-if (env === 'production') maxPools = 30;
+if (env === 'production') {
+  maxPools = 30;
+}
 
 const config = require(`../../postgres-config.js`)[env];
 const db = {};
@@ -22,26 +24,16 @@ if (!config.dialectOptions) {
   config.dialectOptions = {};
 }
 
-config.dialectOptions.application_name =
-  process.env.PG_APPNAME || 'sl_no_app_name';
+config.dialectOptions.application_name = process.env.PG_APPNAME || 'sl_no_app_name';
 
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
-  sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    config
-  );
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-fs
-  .readdirSync(__dirname)
-  .filter(
-    file =>
-      file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
-  )
+fs.readdirSync(__dirname)
+  .filter(file => file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js')
   .forEach(file => {
     const model = sequelize.import(path.join(__dirname, file));
     db[model.name] = model;
@@ -55,7 +47,7 @@ Object.keys(db).forEach(modelName => {
 
 const options = {};
 options.logging = false;
-options.force = false;
+options.force = true;
 
 sequelize.sync();
 
